@@ -8,10 +8,10 @@ describe('App Test Suite', () => {
     app = render(<App />);
   });
 
-  it('renders learn react link', () => {
-    const linkElement = screen.getByText(/learn react/i);
-    expect(linkElement).toBeInTheDocument();
-  });
+  // it('renders learn react link', () => {
+  //   const linkElement = screen.getByText(/learn react/i);
+  //   expect(linkElement).toBeInTheDocument();
+  // });
   
 });
 
