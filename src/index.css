@@ -17,10 +17,11 @@ code {
 }
 
 .header h1 {
+  display:inline-block;
   font-size: 48px;
   font-family: "Dosis";
   color: #D64045;
-  float: left;
+  text-align: center;
   padding-left: 2em;
   
 }
@@ -87,8 +88,8 @@ h3 {
 }
 
 .logo-img {
-  height: 8em;
-  width: 8em;
+  height: 7em;
+  width: 7em;
 }
 
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
