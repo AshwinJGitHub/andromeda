@@ -10,8 +10,12 @@ describe('Header test', () => {
   });
 
   it('renders header text', () => {
-    console.log(screen);
-    const linkElement = screen.getByText('Josh\'s Cat Cars');
+    const linkElement = screen.getByText('Auto Galaxy');
+    expect(linkElement).toBeInTheDocument();
+  });
+
+  it('verify image exists', () => {
+    const linkElement = screen.getByAltText('logoooo');
     expect(linkElement).toBeInTheDocument();
   });
   
