@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'Dosis';
+  src: url('./media/fonts/Dosis/static/Dosis-Bold.ttf');
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -12,9 +16,13 @@ code {
     monospace;
 }
 
-h1 {
-  size: 48-60px;
+.header h1 {
+  font-size: 48px;
+  font-family: "Dosis";
   color: #D64045;
+  float: left;
+  padding-left: 2em;
+  
 }
 
 h2 {
@@ -28,13 +36,19 @@ h3 {
 }
 
 
-
+.header-right{
+  margin-bottom: -30px;
+}
 
 /* Style the header with a grey background and some padding */
 .header {
   overflow: hidden;
   background-color: #f1f1f1;
-  padding: 20px 10px;
+  /* padding: 20px 10px; */
+  width: 100%;
+  position: relative;
+  
+  
 }
 
 /* Style the header links */
@@ -73,8 +87,8 @@ h3 {
 }
 
 .logo-img {
-  height: 50px;
-  width: 50px;
+  height: 8em;
+  width: 8em;
 }
 
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
