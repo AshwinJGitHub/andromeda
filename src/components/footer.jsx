@@ -17,7 +17,7 @@ import Link from '@material-ui/core/Link';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="textSecondary" align="center" width="95%">
       {'Copyright © '}
       <Link color="inherit" href="#">
         Auto Galaxy
@@ -31,8 +31,13 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
 
   footer: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#3f51b5",
     padding: theme.spacing(6),
+    position: "fixed",
+    width: "95%",
+    size: "5%",
+    bottom: 0,
+    contentAlign: "center",
   },
 }));
 
