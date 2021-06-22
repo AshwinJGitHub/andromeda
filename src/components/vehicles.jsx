@@ -16,16 +16,7 @@ import Container from '@material-ui/core/Container';
 
 
 const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
+
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
@@ -41,10 +32,7 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     flexGrow: 1,
   },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
+
 }));
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -55,22 +43,22 @@ export default function Vehicles() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-      console.log('Fetching data...');
-      // const vehicles = await fetch(url, { method: 'GET'});
-      fetch(url)
+    console.log('Fetching data...');
+    // const vehicles = await fetch(url, { method: 'GET'});
+    fetch(url)
       .then(res => res.json())
       .then((result) => {
         console.log(result);
         setVehiclesData(result);
         setIsLoaded(true);
       },
-      (error) => {
-        console.log(error);
-      })
-      console.log(vehiclesData);
-      console.log('Finished fetching data');
+        (error) => {
+          console.log(error);
+        })
+    console.log(vehiclesData);
+    console.log('Finished fetching data');
   }, [isLoaded]);
-  
+
   const classes = useStyles();
 
   return (
