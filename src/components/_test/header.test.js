@@ -1,12 +1,12 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react';
-import HeaderComp from '../header'
+import Header from '../header'
 
 describe('Header test', () => {
   let hdr;
 
   beforeEach(() => {
-    hdr = render(<HeaderComp />);
+    hdr = render(<Header />);
   });
 
   it('renders header text', () => {

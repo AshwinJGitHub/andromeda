@@ -1,16 +1,16 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react';
-import FooterComp from "../footerComp";
+import Footer from "../footer";
 
 describe('Footer test', () => {
   let hdr;
 
   beforeEach(() => {
-    hdr = render(<FooterComp />);
+    hdr = render(<Footer />);
   });
 
   it('renders footer text', () => {
-    const linkElement = screen.getByText('Copyright © Auto Galaxy 2021');
+    const linkElement = screen.getByText('Copyright © Auto Galaxy 2021.');
     expect(linkElement).toBeInTheDocument();
   });
 
