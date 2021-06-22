@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import ClippedDrawer from "./filter";
 // import Link from '@material-ui/core/Link';
 
 
@@ -65,6 +66,7 @@ export default function Vehicles() {
     <React.Fragment>
       <CssBaseline />
       <main>
+        <ClippedDrawer />
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           {vehiclesData && <Grid container spacing={4}>
