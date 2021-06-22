@@ -47,7 +47,7 @@ export default function HeaderComp() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="relative">
+      <AppBar position="relative" data-testid="appHeader" role="region" aria-label="header">
         <Toolbar display="flex" p={1} bgcolor="background.paper">
 
           <Box p={1} width="15%" >
@@ -59,7 +59,7 @@ export default function HeaderComp() {
           </Typography>
           </Box>
           <Box p={1} width="15%" textAlign="right">
-            <img className="logo-img" src={logoImg} alt="Logo of galaxy surrounding a car" height="100px;" width="100px;" />
+            <img aria-label="logo" className="logo-img" src={logoImg} alt="Logo of galaxy surrounding a car" height="100px;" width="100px;" />
           </Box>
 
           {/* <Typography variant="h1" color="inherit" noWrap>

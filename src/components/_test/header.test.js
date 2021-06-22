@@ -1,24 +1,22 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react';
+import { getByRole, render, screen } from '@testing-library/react';
 import Header from '../header'
 
 describe('Header test', () => {
-  let hdr;
+  // let hdr;
 
   beforeEach(() => {
-    hdr = render(<Header />);
+    render(<Header />);
   });
 
   it('renders header text', () => {
-    const linkElement = screen.getByText('Auto Galaxy');
-    expect(linkElement).toBeInTheDocument();
+    const linkElement = screen.getByRole('region', { name: "header"});
+    expect(linkElement).toHaveTextContent('Auto Galaxy');
   });
 
   it('verify image exists', () => {
-    const linkElement = screen.getByAltText('Logo of galaxy surrounding a car');
-    expect(linkElement).toBeInTheDocument();
+    const linkElement = screen.getByRole('region', { name: "header"});
+    expect(getByRole(linkElement, 'img', { name: "logo"})).toBeInTheDocument();
   });
-
-
 });
 
