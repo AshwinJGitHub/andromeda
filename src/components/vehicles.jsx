@@ -76,7 +76,7 @@ export default function Vehicles() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <main>
+      <main data-testid="appVehicles">
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           {vehiclesData && <Grid container spacing={4}>

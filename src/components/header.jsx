@@ -47,7 +47,7 @@ export default function HeaderComp() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="relative">
+      <AppBar position="relative" data-testid="appHeader">
         <Toolbar display="flex" p={1} bgcolor="background.paper">
 
           <Box p={1} width="15%" >

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
   footer: {
     backgroundColor: "#3f51b5",
-    padding: theme.spacing(6),
+    // padding: theme.spacing(6),
     position: "fixed",
     width: "95%",
     size: "5%",
@@ -47,13 +47,15 @@ export default function Footer() {
 
   return (
     <React.Fragment>
-      <CssBaseline />
-      {/* Footer */}
-      <footer className={classes.footer}>
+      <div data-testid="appFooter">
+        <CssBaseline />
+        {/* Footer */}
+        <footer className={classes.footer}>
 
-        <Copyright />
-      </footer>
-      {/* End footer */}
+          <Copyright />
+        </footer>
+        {/* End footer */}
+      </div>
     </React.Fragment>
   );
 }

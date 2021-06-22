@@ -3,10 +3,10 @@ import { render, screen } from '@testing-library/react';
 import HeaderComp from '../header'
 
 describe('Header test', () => {
-  let hdr;
+  // let hdr;
 
   beforeEach(() => {
-    hdr = render(<HeaderComp />);
+    const hdr = render(<HeaderComp />);
   });
 
   it('renders header text', () => {
@@ -18,7 +18,5 @@ describe('Header test', () => {
     const linkElement = screen.getByAltText('Logo of galaxy surrounding a car');
     expect(linkElement).toBeInTheDocument();
   });
-
-
 });
 
