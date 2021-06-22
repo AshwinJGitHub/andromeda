@@ -1,18 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-import HeaderComp from './components/headerComp'
-import FooterComp from "./components/footerComp";
+
+import Container from "@material-ui/core/Container";
+
+import Header from './components/header'
+import Footer from "./components/footer";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <HeaderComp />
-      </header>
-        <footer>
-            <FooterComp />
-        </footer>
+    <div>
+      <Container>
+        <Header />
+
+        <Footer />
+      </Container>
     </div>
+
   );
 }
 

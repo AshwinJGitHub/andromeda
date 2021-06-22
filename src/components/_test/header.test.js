@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react';
-import HeaderComp from '../headerComp'
+import HeaderComp from '../header'
 
 describe('Header test', () => {
   let hdr;
@@ -15,9 +15,10 @@ describe('Header test', () => {
   });
 
   it('verify image exists', () => {
-    const linkElement = screen.getByAltText('logoooo');
+    const linkElement = screen.getByAltText('Logo of galaxy surrounding a car');
     expect(linkElement).toBeInTheDocument();
   });
-  
+
+
 });
 
