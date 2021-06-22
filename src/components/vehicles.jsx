@@ -35,16 +35,14 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const url = "http://localhost:5000/api/vehicles";
 
 export default function Vehicles() {
-  const [vehiclesData, setVehiclesData] = useState();
+  const [vehiclesData, setVehiclesData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     console.log('Fetching data...');
-    // const vehicles = await fetch(url, { method: 'GET'});
     fetch(url)
       .then(res => res.json())
       .then((result) => {
@@ -64,7 +62,7 @@ export default function Vehicles() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <main data-testid="appVehicles">
+      <main data-testid="appVehicles" role="region" aria-label="vehicles">
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           {vehiclesData && <Grid container spacing={4}>
