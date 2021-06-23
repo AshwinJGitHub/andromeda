@@ -15,6 +15,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import DateFnsUtils from '@date-io/date-fns';
 import TextField from '@material-ui/core/TextField';
+import { debounce } from 'lodash';
 import {
     KeyboardDatePicker,
     MuiPickersUtilsProvider,
@@ -62,11 +63,14 @@ export default function ClippedDrawer({ vehicleFields, sendDataToParent, sendFil
             sendDataToParent(event.target.name, event.target.value);
         }
     };
+
     const handleSearch = (event) => {
         console.log("event", event);
         sendFilterToParent(event.target.value);
 
     };
+    const handleSearchDebounce = debounce(handleSearch, 100)
+
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -84,7 +88,7 @@ export default function ClippedDrawer({ vehicleFields, sendDataToParent, sendFil
                         {/* {['ID', 'Make', 'Model', 'Year'].map((text, index) => ( */}
                         <ListItem key="Filter"  >
                             <ListItemIcon> <FindInPageIcon /></ListItemIcon>
-                            <TextField id="standard-basic" label="Filter" onChange={handleSearch} />
+                            <TextField id="standard-basic" label="Filter" onChange={handleSearchDebounce} />
                         </ ListItem>s
                         <ListItem key="Make"  >
                             <ListItemIcon> <FindInPageIcon /></ListItemIcon>
