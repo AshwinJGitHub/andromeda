@@ -18,12 +18,12 @@ import Link from '@material-ui/core/Link';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center" width="95%">
-      {'Copyright © '}
       <Link color="inherit" href="#">
+        {'Copyright © '}
         Auto Galaxy
+        {new Date().getFullYear()}
+        {'.'}
       </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
     </Typography>
   );
 }
@@ -41,19 +41,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function Footer() {
   const classes = useStyles();
 
   return (
     <React.Fragment>
-      <CssBaseline />
-      {/* Footer */}
-      <footer className={classes.footer}>
+      <div data-testid="appFooter" role="region" aria-label="footer">
+        <CssBaseline />
+        {/* Footer */}
+        <footer className={classes.footer}>
 
-        <Copyright />
-      </footer>
-      {/* End footer */}
+          <Copyright />
+        </footer>
+        {/* End footer */}
+      </div>
     </React.Fragment>
   );
 }

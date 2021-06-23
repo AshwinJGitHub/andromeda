@@ -41,10 +41,10 @@ const url = "http://localhost:5000/api/vehicles";
 
 
 export default function Vehicles() {
-
   const [filteredVehiclesData, setFilteredVehiclesData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
   const [vehiclesData, setVehiclesData] = useState();
+  
   const sendDataToParent = (fieldType, value) => { // the callback. Use a better name
     if (value) {
       console.log(fieldType, value, "sendDataToParent got called");
@@ -67,7 +67,6 @@ export default function Vehicles() {
 
   useEffect(() => {
     console.log('Fetching data...');
-    // const vehicles = await fetch(url, { method: 'GET'});
     fetch(url)
       .then(res => res.json())
       .then((result) => {
