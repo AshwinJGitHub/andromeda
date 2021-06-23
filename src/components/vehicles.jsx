@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import ClippedDrawer from "./filter";
 // import Link from '@material-ui/core/Link';
 
 
@@ -37,9 +38,32 @@ const useStyles = makeStyles((theme) => ({
 
 const url = "http://localhost:5000/api/vehicles";
 
+
+
 export default function Vehicles() {
-  const [vehiclesData, setVehiclesData] = useState([]);
+  const [filteredVehiclesData, setFilteredVehiclesData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [vehiclesData, setVehiclesData] = useState();
+  
+  const sendDataToParent = (fieldType, value) => { // the callback. Use a better name
+    if (value) {
+      console.log(fieldType, value, "sendDataToParent got called");
+      let data = vehiclesData.filter(x => x[fieldType.toLowerCase()] === value);
+      setFilteredVehiclesData(data);
+    } else {
+      setFilteredVehiclesData(vehiclesData);
+    }
+  };
+  const sendFilterToParent = (searchValue) => { // the callback. Use a better name
+    if (searchValue) {
+      console.log("searchValue", searchValue)
+      console.log("")
+      let data = vehiclesData.filter(x => x.make.toLowerCase().includes(searchValue.toLowerCase()) || x.model.toLowerCase().includes(searchValue.toLowerCase()) || (x.year + "").includes(searchValue));
+      setFilteredVehiclesData(data);
+    } else {
+      setFilteredVehiclesData(vehiclesData);
+    }
+  };
 
   useEffect(() => {
     console.log('Fetching data...');
@@ -47,13 +71,15 @@ export default function Vehicles() {
       .then(res => res.json())
       .then((result) => {
         console.log(result);
-        setVehiclesData(result);
+        setFilteredVehiclesData(result);
         setIsLoaded(true);
+
+        setVehiclesData([...result]);
       },
         (error) => {
           console.log(error);
         })
-    console.log(vehiclesData);
+    console.log(filteredVehiclesData);
     console.log('Finished fetching data');
   }, [isLoaded]);
 
@@ -62,11 +88,11 @@ export default function Vehicles() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <main data-testid="appVehicles" role="region" aria-label="vehicles">
+      <main>
+        {vehiclesData && <ClippedDrawer vehicleFields={vehiclesData} sendDataToParent={sendDataToParent} sendFilterToParent={sendFilterToParent} />}
         <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-          {vehiclesData && <Grid container spacing={4}>
-            {vehiclesData.map((card) => (
+          {filteredVehiclesData && <Grid container spacing={4}>
+            {filteredVehiclesData.map((card) => (
               <Grid item key={card.id} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
@@ -95,6 +121,7 @@ export default function Vehicles() {
             ))}
           </Grid>}
         </Container>
+
       </main>
     </React.Fragment>
   );
