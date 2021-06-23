@@ -1,26 +1,20 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import EventIcon from '@material-ui/icons/Event';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import DateFnsUtils from '@date-io/date-fns';
-// import DateFnsUtils from '@date-io/date-fns';
+import TextField from '@material-ui/core/TextField';
 import {
     KeyboardDatePicker,
     MuiPickersUtilsProvider,
@@ -51,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ClippedDrawer({ vehicleFields, sendDataToParent }) {
+export default function ClippedDrawer({ vehicleFields, sendDataToParent, sendFilterToParent }) {
 
     const classes = useStyles();
     console.log("vehicleFields", vehicleFields);
@@ -68,6 +62,11 @@ export default function ClippedDrawer({ vehicleFields, sendDataToParent }) {
             sendDataToParent(event.target.name, event.target.value);
         }
     };
+    const handleSearch = (event) => {
+        console.log("event", event);
+        sendFilterToParent(event.target.value);
+
+    };
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -83,7 +82,10 @@ export default function ClippedDrawer({ vehicleFields, sendDataToParent }) {
 
                     <List>
                         {/* {['ID', 'Make', 'Model', 'Year'].map((text, index) => ( */}
-
+                        <ListItem key="Filter"  >
+                            <ListItemIcon> <FindInPageIcon /></ListItemIcon>
+                            <TextField id="standard-basic" label="Filter" onChange={handleSearch} />
+                        </ ListItem>s
                         <ListItem key="Make"  >
                             <ListItemIcon> <FindInPageIcon /></ListItemIcon>
                             <FormControl required className={classes.formControl}>
@@ -142,7 +144,6 @@ export default function ClippedDrawer({ vehicleFields, sendDataToParent }) {
                             </MuiPickersUtilsProvider>
                         </ListItem>
                     </List>
-
                     <Divider />
                 </div>
             </Drawer>

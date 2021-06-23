@@ -54,6 +54,16 @@ export default function Vehicles() {
       setFilteredVehiclesData(vehiclesData);
     }
   };
+  const sendFilterToParent = (searchValue) => { // the callback. Use a better name
+    if (searchValue) {
+      console.log("searchValue", searchValue)
+      console.log("")
+      let data = vehiclesData.filter(x => x.make.toLowerCase().includes(searchValue.toLowerCase()) || x.model.toLowerCase().includes(searchValue.toLowerCase()) || (x.year + "").includes(searchValue));
+      setFilteredVehiclesData(data);
+    } else {
+      setFilteredVehiclesData(vehiclesData);
+    }
+  };
 
   useEffect(() => {
     console.log('Fetching data...');
@@ -80,7 +90,7 @@ export default function Vehicles() {
     <React.Fragment>
       <CssBaseline />
       <main>
-        {vehiclesData && <ClippedDrawer vehicleFields={vehiclesData} sendDataToParent={sendDataToParent} />}
+        {vehiclesData && <ClippedDrawer vehicleFields={vehiclesData} sendDataToParent={sendDataToParent} sendFilterToParent={sendFilterToParent} />}
         <Container className={classes.cardGrid} maxWidth="md">
           {filteredVehiclesData && <Grid container spacing={4}>
             {filteredVehiclesData.map((card) => (
