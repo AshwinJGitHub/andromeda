@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 // import AppBar from '@material-ui/core/AppBar';
+import { FixedSizeList } from 'react-window';
 import Button from '@material-ui/core/Button';
 // import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
@@ -44,7 +45,7 @@ export default function Vehicles() {
   const [filteredVehiclesData, setFilteredVehiclesData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
   const [vehiclesData, setVehiclesData] = useState();
-  
+
   const sendDataToParent = (fieldType, value) => { // the callback. Use a better name
     if (value) {
       console.log(fieldType, value, "sendDataToParent got called");
@@ -64,6 +65,8 @@ export default function Vehicles() {
       setFilteredVehiclesData(vehiclesData);
     }
   };
+
+
 
   useEffect(() => {
     console.log('Fetching data...');
@@ -85,44 +88,43 @@ export default function Vehicles() {
 
   const classes = useStyles();
 
+
+
+  const Row = useCallback(({ index, style }) => {
+    const vehicle = filteredVehiclesData[index];
+    return (
+      <div style={style}>
+        <img src={vehicle.image} height="100" width="100"></img>
+
+        <br />
+        <span>{vehicle.make}</span>
+        <br />
+        <span> {vehicle.model}</span>
+        <br />
+        <span>{vehicle.year}</span>
+        <br />
+        <button value="View" name="View">View</button> &nbsp; <button value="Store" name="Store" >Store</button>
+      </div>
+    )
+  }, [filteredVehiclesData])
+
+
+
   return (
     <React.Fragment>
-      <CssBaseline />
+      <CssBaseline />w
       <main>
-        {vehiclesData && <ClippedDrawer vehicleFields={vehiclesData} sendDataToParent={sendDataToParent} sendFilterToParent={sendFilterToParent} />}
-        <Container className={classes.cardGrid} maxWidth="md">
-          {filteredVehiclesData && <Grid container spacing={4}>
-            {filteredVehiclesData.map((card) => (
-              <Grid item key={card.id} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={card.image}
-                    title={card.make + ' ' + card.model}
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {`${card.make}, ${card.model}`}
-                    </Typography>
-                    <Typography>
-                      {card.image}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary">
-                      View
-                    </Button>
-                    <Button size="small" color="primary">
-                      Edit
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>}
-        </Container>
+        {/* {vehiclesData && <ClippedDrawer vehicleFields={vehiclesData} sendDataToParent={sendDataToParent} sendFilterToParent={sendFilterToParent} />} */}
+        {filteredVehiclesData && < FixedSizeList
+          height={500}
+          width={1200}
+          itemSize={220}
+          itemCount={filteredVehiclesData.length} >
+          {Row}
+        </FixedSizeList>
+        }
 
       </main>
-    </React.Fragment>
+    </React.Fragment >
   );
 }

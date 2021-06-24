@@ -24,7 +24,7 @@ describe("Vehicle List Test", () => {
     },
   }));
   let vehicles;
-  beforeEach(() => {});
+  beforeEach(() => { });
   test("should render vehicle make", async () => {
     jest.spyOn(window, "fetch").mockResolvedValue({
       json: async () => [
